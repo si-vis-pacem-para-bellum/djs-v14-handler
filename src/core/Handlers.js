@@ -11,7 +11,7 @@ class Handlers {
 
     async load_handler(handler) {
         const pattern = process.platform.startsWith('win')
-            ? (__dirname + '\\..\\commands\\**\\**.js').replace(/\\/g, '/') // glob is broken on windows
+            ? (__dirname + '\\..\\' + handler.constructor.name.toLowerCase() +'\\**\\**.js').replace(/\\/g, '/') // glob is broken on windows
             : path.join(__dirname, '..', handler.constructor.name.toLowerCase(), '**/**.js');
 
         const files = await glob.sync(pattern);
